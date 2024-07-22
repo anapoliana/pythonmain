@@ -1,0 +1,61 @@
+from abc import ABC, abstractmethod
+
+class Produto(ABC):
+    def __init__(self, nome, preco):
+        self.nome = nome
+        self.preco = preco
+    
+    @abstractmethod
+    def etiqueta_preco(self):
+        pass
+
+class ProdutoImportado(Produto):
+    def __init__(self, nome, preco, taxa_alfandega):
+        super().__init__(nome, preco)
+        self.taxa_alfandega = taxa_alfandega
+    
+    def etiqueta_preco(self):
+        preco_total = self.preco + self.taxa_alfandega
+        return f"{self.nome} - Preço: ${preco_total:.2f} (Taxa de alfândega: ${self.taxa_alfandega:.2f})"
+
+class ProdutoUsado(Produto):
+    def __init__(self, nome, preco, data_fabricacao):
+        super().__init__(nome, preco)
+        self.data_fabricacao = data_fabricacao
+    
+    def etiqueta_preco(self):
+        return f"{self.nome} (usado) - Data de fabricação: {self.data_fabricacao} - Preço: ${self.preco:.2f}"
+    def main():
+
+    Produto[]
+
+    n = int(input("Digite o número de produtos: "))
+
+    for i in range(1, n + 1):
+        print(f"Produto #{i}:")
+        tipo = input("Comum, Importado ou Usado? ").strip().lower()
+
+        nome = input("Nome: camiseta ")
+        preco = float(input("Preço: $25"))
+
+        if tipo == "comum":
+            produto = Produto(nome, preco)
+        elif tipo == "importado":
+            taxa = float(input("Taxa de alfândega: $"))
+            produto = ProdutoImportado(nome, preco, taxa)
+        elif tipo == "usado":
+            data_fabricacao = input("Data de fabricação (DD/MM/AAAA): ")
+            produto = ProdutoUsado(nome, preco, data_fabricacao)
+        else:
+            print("Tipo de produto inválido. Produto não cadastrado.")
+            continue
+        
+        produtos.append(produto)
+        print("Produto cadastrado com sucesso!")
+
+    print("\nEtiquetas de Preço:")
+    for produto in produtos:
+        print(produto.etiqueta_preco())
+
+if __name__ == "__main__":
+    main()
